@@ -26,12 +26,8 @@ public class JoyStick {
 	public static final int STICK_LEFT = 7;
 	public static final int STICK_UPLEFT = 8; 
 	
-	private int STICK_ALPHA = 200;
-	private int LAYOUT_ALPHA = 200;
-	
+	//mad distance that stick can move
 	private float DRAW_MAX;
-	
-	private int touchId = -1;
 	
 	//the size and location of joystick
 	private float stick_width = 0, stick_x = 0, stick_y = 0;
@@ -42,22 +38,30 @@ public class JoyStick {
 	private float distance = 0, angle = 0;
 
 	//what it looks like
-	private Paint paint_stick, paint_pad;
+	private Paint paint_stick, paint_pad, paint_debug;
 	private int stickColor, padColor;
 	
+	//if tapped down on the joystick
 	private boolean touch_state = false;
+	//the id of the finger on the screen
+	private int touchId = -1;
 	
 	public JoyStick () {
         
+		paint_debug = new Paint();
+		paint_debug.setColor(Color.WHITE);
+		
 		//bg pad
-        padColor = Color.DKGRAY;
+        padColor = Color.rgb(25, 25, 25);
         paint_pad = new Paint();
         paint_pad.setColor(padColor);
+        paint_pad.setAlpha(200);
         
         //stick
-        stickColor = Color.RED;
+        stickColor = Color.rgb(10, 10, 10);
         paint_stick = new Paint();
         paint_stick.setColor(stickColor);
+        paint_stick.setAlpha(200);
         
 	}
 	
@@ -169,11 +173,11 @@ public class JoyStick {
 		g.drawCircle(stick_x, stick_y, stick_width, paint_stick);
 		
 		//some debug stuff
-		g.drawString("StickPos: " + stick_x + ", "+ stick_y, (int)pad_x-30, 310, paint_pad);
-		g.drawString("Angle: " + angle, (int)pad_x-30, 320, paint_pad);
-		g.drawString("Distance: " + distance, (int)pad_x-30, 330, paint_pad);
-		g.drawString("TouchState:" + touch_state, (int)pad_x-30, 340, paint_pad);
-		g.drawString("TouchId:" + touchId, (int)pad_x-30, 350, paint_pad);
+		g.drawString("StickPos: " + stick_x + ", "+ stick_y, (int)pad_x-30, 310, paint_debug);
+		g.drawString("Angle: " + angle, (int)pad_x-30, 320, paint_debug);
+		g.drawString("Distance: " + distance, (int)pad_x-30, 330, paint_debug);
+		g.drawString("TouchState:" + touch_state, (int)pad_x-30, 340, paint_debug);
+		g.drawString("TouchId:" + touchId, (int)pad_x-30, 350, paint_debug);
 	}
 	
 	public int[] getPosition() {
@@ -266,22 +270,19 @@ public class JoyStick {
 	}
 	
 	public void setStickAlpha(int alpha) {
-		STICK_ALPHA = alpha;
 		paint_stick.setAlpha(alpha);
 	}
 	
 	public int getStickAlpha() {
-		return STICK_ALPHA;
+		return paint_stick.getAlpha();
 	}
 	
 	public void setLayoutAlpha(int alpha) {
-		LAYOUT_ALPHA = alpha;
 		paint_stick.setAlpha(alpha);
-		//mLayout.getBackground().setAlpha(alpha);
 	}
 	
 	public int getLayoutAlpha() {
-		return LAYOUT_ALPHA;
+		return paint_pad.getAlpha();
 	}
 	
 	public void setStickWidth(int width) {
