@@ -7,11 +7,14 @@ import java.io.InputStreamReader;
 
 import com.monospace.framework.Screen;
 import com.monospace.framework.implementation.AndroidGame;
-import com.rius.monospace.main.SplashLoadingScreen;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
+import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
 
 public class Monospace extends AndroidGame {
@@ -30,8 +33,6 @@ public class Monospace extends AndroidGame {
             Assets.load(this);
             firstTimeCreate = false;
         }
-		
-		
 		
 		mContext = this;
 

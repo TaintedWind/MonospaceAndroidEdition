@@ -1,10 +1,19 @@
 package com.rius.monospace;
 
 import com.monospace.framework.Graphics;
+import com.monospace.framework.Game;
 import com.monospace.framework.Input.TouchEvent;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.view.MotionEvent;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.ViewGroup.LayoutParams;
 
 public class JoyStick {
 	public static final int STICK_NONE = 0;
@@ -112,7 +121,6 @@ public class JoyStick {
 				stick_y = tapY;
 			} else if (distance > DRAW_MAX){
 				//draw inside if tap is outside
-				distance = DRAW_MAX;
 				stick_x = (float) (DRAW_MAX * (Math.cos(Math.toRadians(angle)))) + pad_x;
 				stick_y = (float) (DRAW_MAX * (Math.sin(Math.toRadians(angle)))) + pad_y;
 			}

@@ -1,8 +1,9 @@
-package com.rius.monospace.main;
+package com.rius.monospace;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.graphics.Paint;
 
@@ -11,9 +12,6 @@ import com.monospace.framework.Graphics;
 import com.monospace.framework.Image;
 import com.monospace.framework.Screen;
 import com.monospace.framework.Input.TouchEvent;
-import com.rius.monospace.Assets;
-import com.rius.monospace.Monospace;
-import com.rius.monospace.Timer;
 
 
 public class MainMenuScreen extends Screen {
@@ -24,6 +22,7 @@ public class MainMenuScreen extends Screen {
 	double bgY = 0;
 	Timer backgroundTimer;
 	ArrayList<Image> background;
+	ArrayList<Bitmap> backgroundB;
 	
     public MainMenuScreen(Game game) {
         super(game);
@@ -72,7 +71,7 @@ public class MainMenuScreen extends Screen {
 
                 if (inBounds(event, 0, 0, 1280, 720)) {
                     //START GAME
-                    game.setScreen(Assets.screen_running);               
+                    game.setScreen(new GameScreen(game));               
                 }
 
 

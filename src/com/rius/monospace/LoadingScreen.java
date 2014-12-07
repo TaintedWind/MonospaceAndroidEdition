@@ -1,12 +1,16 @@
-package com.rius.monospace.main;
+package com.rius.monospace;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Typeface;
+import android.view.Display;
+
 import com.monospace.framework.Game;
 import com.monospace.framework.Graphics;
+import com.monospace.framework.Image;
 import com.monospace.framework.Screen;
 import com.monospace.framework.Graphics.ImageFormat;
-import com.rius.monospace.Assets;
-import com.rius.monospace.Monospace;
+import com.rius.monospace.R.string;
 
 
 public class LoadingScreen extends Screen {
@@ -31,14 +35,8 @@ public class LoadingScreen extends Screen {
         //load sounds
         //Assets.click = game.getAudio().createSound("explode.ogg");
         
-        //set up the screens
-  		Assets.screen_mainMenu = new MainMenuScreen(game);
-  		Assets.screen_paused = new PauseScreen(game);
-  		Assets.screen_running = new PlayScreen(game);
-  		//screen_ready = new ReadyScreen(this);
-        
         //load the game
-        game.setScreen(Assets.screen_mainMenu);
+        game.setScreen(new MainMenuScreen(game));
 
     }
 

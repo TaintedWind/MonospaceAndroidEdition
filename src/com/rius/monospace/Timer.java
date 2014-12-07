@@ -1,5 +1,7 @@
 package com.rius.monospace;
 
+import com.rius.monospace.GameScreen;
+
 public class Timer {
 
     int time, maxTime;
@@ -10,9 +12,7 @@ public class Timer {
     }
 
     public void update() {
-    	//time += deltaTime
-        //time += AndroidGame.
-    	System.out.println("Timers not yet implemented!");
+        time += GameScreen.deltaTime;
     }
 
     public void reset() {
