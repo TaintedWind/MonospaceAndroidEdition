@@ -22,6 +22,8 @@ public class GameScreen extends Screen {
     JoyStick joystick_movement, joystick_fire;
     
     public static float deltaTime;
+    
+    Screen paused;
 
     // Variable Setup
     // You would create game objects here.
@@ -31,8 +33,8 @@ public class GameScreen extends Screen {
 
     public GameScreen(Game game) {
         super(game);
-
-        // Initialize game objects here
+        //make the screens to be updated and stuff
+        paused = new PauseScreen(game);
 
         // Defining a paint object
         paint = new Paint();
@@ -86,11 +88,8 @@ public class GameScreen extends Screen {
     }
 
     private void updateReady(List<TouchEvent> touchEvents) {
-        
-        // This example starts with a "Ready" screen.
         // When the user touches the screen, the game begins. 
         // state now becomes GameState.Running.
-        // Now the updateRunning() method will be called!
         
         if (touchEvents.size() > 0)
             state = GameState.Running;
@@ -103,29 +102,10 @@ public class GameScreen extends Screen {
         for (int i = 0; i < len; i++) {
             TouchEvent event = touchEvents.get(i);
             
+            //may want to streamline touch events and put them here
             joystick_movement.update(event);
             joystick_fire.update(event);
             
-            /*
-            if (event.type == TouchEvent.TOUCH_DRAGGED){;
-            	joystick_movement.update(event.x, event.y);;
-            	joystick_fire.update(event.x, event.y);
-            }else{
-            	joystick_movement.setIsDown(false);
-            	joystick_fire.setIsDown(false);
-            }
-            if (event.type == TouchEvent.TOUCH_DOWN) {
-            	if (joystick_movement.getDistance() < joystick_movement.getDrawMax()){
-            		joystick_movement.setIsDown(true);
-            	}
-            	if (joystick_fire.getDistance() < joystick_fire.getDrawMax()){
-            		joystick_fire.setIsDown(true);
-            	}	
-            }
-            if (event.type == TouchEvent.TOUCH_UP) {
-            	joystick_movement.zeroValues();
-            	joystick_fire.zeroValues();
-            }*/
         }
         
         // 2. Check miscellaneous events like death:
@@ -135,8 +115,6 @@ public class GameScreen extends Screen {
         }
         
         // 3. Call individual update() methods here.
-        // This is where all the game updates happen.
-        // For example, robot.update();
         
     }
 
