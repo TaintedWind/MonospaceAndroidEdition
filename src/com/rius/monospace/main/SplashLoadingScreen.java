@@ -1,9 +1,10 @@
-package com.rius.monospace;
+package com.rius.monospace.main;
 
 import com.monospace.framework.Game;
 import com.monospace.framework.Graphics;
 import com.monospace.framework.Graphics.ImageFormat;
 import com.monospace.framework.Screen;
+import com.rius.monospace.Assets;
 
 public class SplashLoadingScreen extends Screen {
     public SplashLoadingScreen(Game game) {
