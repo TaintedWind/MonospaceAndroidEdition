@@ -1,4 +1,4 @@
-MonospaceAndroidEdition
+Monospace: Android Edition
 =======================
 
 The port of Monospace by Computerology to android. 
