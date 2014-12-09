@@ -54,6 +54,7 @@ public class PlayScreen extends Screen{
 
 	@Override
 	public void update(float deltaTime) {
+		
 		//touch events
 		List<TouchEvent> touchEvents = game.getInput().getTouchEvents();
 		

@@ -10,19 +10,29 @@ import com.monospace.framework.Graphics;
 import com.monospace.framework.Input.TouchEvent;
 import com.monospace.framework.Screen;
 import com.rius.monospace.Assets;
+import com.rius.monospace.Monospace;
 
 public class PauseScreen extends Screen{
 
-	private Paint paint;
+	private Paint title,paint,opts;
 
 	public PauseScreen(Game game) {
 		super(game);
 		//draw objects
 		paint = new Paint();
         paint.setTextSize(30);
-        paint.setTextAlign(Paint.Align.CENTER);
         paint.setAntiAlias(true);
         paint.setColor(Color.WHITE);
+        
+        title = new Paint();
+		title.setColor(Color.WHITE);
+		title.setTextSize(60);
+		title.setTypeface(Monospace.spaceFont);
+		title.setShadowLayer((float)0.01, 7, 7, Color.DKGRAY);
+		
+		opts = new Paint();
+		opts.set(title);
+		opts.clearShadowLayer();
 
 	}
 
@@ -34,8 +44,15 @@ public class PauseScreen extends Screen{
         for (int i = 0; i < len; i++) {
             TouchEvent event = touchEvents.get(i);
             if (event.type == TouchEvent.TOUCH_UP) {
-            	//go back to game
-            	game.setScreen(Assets.screen_running);
+            	
+            	//Resume
+            	if (inBounds(event,200, 190, 500, 80)) {
+            		game.setScreen(Assets.screen_running);
+            	}
+            	//Main Menu
+            	if (inBounds(event,200, 290, 500, 80)) {
+            		game.setScreen(new MainMenuScreen(game));
+            	}
             }
         }
 		
@@ -46,9 +63,32 @@ public class PauseScreen extends Screen{
 		Graphics g = game.getGraphics();
         // Darken the entire screen so you can display the Paused screen.
         g.drawARGB(100, 0, 0, 0);
-        g.drawString("PAUSED",640, 300, paint);
+        g.drawString("PAUSED", 210, 100, title);
+        
+        g.drawString("RESUME", 210, 250, opts);
+        g.drawRectHollow(200, 190, 500, 80, Color.WHITE);
+        
+        g.drawString("MAIN MENU", 210, 350, opts);
+        g.drawRectHollow(200, 290, 500, 80, Color.WHITE);
 		
 	}
+	
+	private boolean inBounds(TouchEvent event, int x, int y, int width,
+            int height) {
+        if (event.x > x && event.x < x + width - 1 && event.y > y
+                && event.y < y + height - 1)
+            return true;
+        else
+            return false;
+    }
+	
+	//clear all variables
+    public void nullify(){
+    	
+    	//ru garbage cleanup
+    	System.gc();
+    }
+
 
 	@Override
 	public void pause() {

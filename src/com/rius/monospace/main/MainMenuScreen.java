@@ -64,19 +64,26 @@ public class MainMenuScreen extends Screen {
         	background.add(Assets.stars);
         	System.out.println("Added BG Image");
         }
-
+        
         int len = touchEvents.size();
         for (int i = 0; i < len; i++) {
-            TouchEvent event = touchEvents.get(i);
-            if (event.type == TouchEvent.TOUCH_UP) {
-
-                if (inBounds(event, 0, 0, 1280, 720)) {
-                    //START GAME
-                    game.setScreen(Assets.screen_running);               
-                }
-
-
-            }
+        	if (i < touchEvents.size()) {
+	            TouchEvent event = touchEvents.get(i);
+	            if (event.type == TouchEvent.TOUCH_UP) {
+	            	
+	            	if (inBounds(event,1180,620,100,100)){
+	            		//settings menu
+                		nullify();
+                		game.setScreen(new SettingsScreen(game));
+                		break;
+                	}else if (inBounds(event, 0, 0, 1280, 720)) {
+	                	//START GAME
+	                    game.setScreen(Assets.screen_running);               
+	                }
+	
+	
+	            }
+        	}
         }
     }
 
@@ -105,11 +112,27 @@ public class MainMenuScreen extends Screen {
             }
         }
         
+        //draw the settings gear
+        g.drawImage(Assets.settingGear, 1200, 640);
+        //g.drawScaledImage(Assets.optGear, 1200, 640, 70, 70, 0, 0, 256, 256);
+        
         g.drawString("MONOSPACE", (640),(140), title);
         g.drawString("TAP TO PLAY", (640),(370), titleSub);
-        g.drawString("0.0.1", (20),(700), textReg);
+        g.drawString("0.0.2", (20),(700), textReg);
         
         
+    }
+    
+    //clear all variables
+    public void nullify(){
+    	
+    	this.title = null;
+    	this.titleSub = null;
+    	this.textReg = null;
+    	this.background = null;
+    	
+    	//ru garbage cleanup
+    	System.gc();
     }
 
 
@@ -135,7 +158,7 @@ public class MainMenuScreen extends Screen {
     @Override
     public void backButton() {
         //Display "Exit Game?" Box
-
+    	nullify();
 
     }
 }

@@ -1,6 +1,8 @@
 package com.monospace.framework;
 
 
+import com.monospace.framework.Graphics.ImageFormat;
+
 import android.graphics.Paint;
 
 public interface Graphics {
@@ -34,5 +36,7 @@ public interface Graphics {
 	void drawRectHollow(int x, int y, int width, int height, int color);
 
 	void drawCircle(float cx, float cy, float radius, Paint paint);
+
+	Image newRotateImage(String fileName, ImageFormat format, int degrees);
 
 }

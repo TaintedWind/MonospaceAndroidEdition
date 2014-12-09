@@ -19,10 +19,16 @@ public class LoadingScreen extends Screen {
     public void update(float deltaTime) {
         Graphics g = game.getGraphics();
         
+        System.out.println("Loading Assets...");
+        
         //load images
         Assets.menu = g.newImage("images/starfield.png", ImageFormat.RGB565);
         Assets.stars = g.newImage("images/starfield.png", ImageFormat.RGB565);
+        Assets.settingGear = g.newImage("images/gear.png", ImageFormat.ARGB4444);
+        Assets.triangle = g.newImage("images/triangle.png", ImageFormat.ARGB4444);
+        Assets.triangleInv = g.newRotateImage("images/triangle.png", ImageFormat.ARGB4444, 180);
         
+        //Assets.triangleInv.
         
         
         //load fonts
